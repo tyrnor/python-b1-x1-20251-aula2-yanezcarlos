@@ -61,7 +61,7 @@ def test_find_size_largest_sentence():
         TEXT, "melon") == 19, "Check the function: find_size_largest_sentence"
 
 
-def test_test_error_find_size_largest_sentence():
+def test_error_find_size_largest_sentence():
     with pytest.raises(
         ValueError
     ):
