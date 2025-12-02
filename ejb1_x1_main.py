@@ -48,9 +48,32 @@ el valor pasado como filtro y la oración tiene una longitud de la cadena de tex
 from util_package import text_manager 
 from util_package.text_manager import TEXT, is_newline, is_space, remove_punctuation_marks
 
+def update_largest(current_word, largest_word):
+    """
+    Removes punctuation from current_word and compares its length with larget_word.
+    Returns the updated largest_word.
+    """
+
+    current_word = remove_punctuation_marks(current_word)
+
+    if len(current_word) > len(largest_word):\
+        return current_word
+    
+    return largest_word
+
 def find_largest_word(text):
-    # Write here your code
-    pass                
+    largest_word = ""
+    current_word = ""
+    for char in text:
+        if not is_newline(char) and not is_space(char):
+            current_word += char               
+        else:
+            largest_word = update_largest(current_word, largest_word)
+            current_word = ""
+    
+    largest_word = update_largest(current_word, largest_word)
+    
+    return largest_word
 
 def is_palindrome_word(word):
     # Write here your code
@@ -69,7 +92,7 @@ def find_size_largest_sentence(text, filter):
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
-#print("La palabra mas larga es:", find_largest_word(TEXT))
+print("La palabra mas larga es:", find_largest_word(TEXT))
 #print("'aa' es un palíndromo su resultado es:", is_palindrome_word("aa"))
 #print("'abx' no un palíndromo su resultado es:", is_palindrome_word("abx"))
 #print("'a' es un palíndromo su resultado es:", is_palindrome_word("a"))
