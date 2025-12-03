@@ -56,7 +56,7 @@ def update_largest(current_word, largest_word):
 
     current_word = remove_punctuation_marks(current_word)
 
-    if len(current_word) > len(largest_word):\
+    if len(current_word) > len(largest_word):
         return current_word
     
     return largest_word
@@ -72,7 +72,7 @@ def find_largest_word(text):
             current_word = ""
     
     largest_word = update_largest(current_word, largest_word)
-    
+
     return largest_word
 
 def is_palindrome_word(word):
