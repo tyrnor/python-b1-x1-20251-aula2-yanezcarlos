@@ -76,14 +76,28 @@ def find_largest_word(text):
     return largest_word
 
 def is_palindrome_word(word):
-    # Write here your code
-    pass
+    word = remove_punctuation_marks(word).lower()
+    if len(word) <= 1:
+        return True
+    if word[0] != word[-1]:
+        return False
+    return is_palindrome_word(word[1:-1])
     
-
-
 def count_palindrome_words(text):
-    # Write here your code
-    pass
+    count_palindromes = 0
+    current_word = ""
+    for char in text:
+        if not is_newline(char) and not is_space(char):
+            current_word += char               
+        else:
+            current_word = remove_punctuation_marks(current_word)
+            if is_palindrome_word(current_word) and current_word != "":
+                count_palindromes += 1
+            current_word = ""
+    if is_palindrome_word(current_word) and current_word != "":
+        count_palindromes += 1
+    
+    return count_palindromes
 
 
 def find_size_largest_sentence(text, filter):
@@ -93,9 +107,9 @@ def find_size_largest_sentence(text, filter):
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
 print("La palabra mas larga es:", find_largest_word(TEXT))
-#print("'aa' es un palíndromo su resultado es:", is_palindrome_word("aa"))
-#print("'abx' no un palíndromo su resultado es:", is_palindrome_word("abx"))
-#print("'a' es un palíndromo su resultado es:", is_palindrome_word("a"))
-#print("'Ababa' es palíndromo su resultado es:", is_palindrome_word("Ababa"))
-#print("El número de palabras identificadas como palíndromos es:", count_palindrome_words(TEXT))
+print("'aa' es un palíndromo su resultado es:", is_palindrome_word("aa"))
+print("'abx' no un palíndromo su resultado es:", is_palindrome_word("abx"))
+print("'a' es un palíndromo su resultado es:", is_palindrome_word("a"))
+print("'Ababa' es palíndromo su resultado es:", is_palindrome_word("Ababa"))
+print("El número de palabras identificadas como palíndromos es:", count_palindrome_words(TEXT))
 #print("El tamaño de la oración más larga con el filtro='a', es :", find_size_largest_sentence(TEXT, "melon"))
